@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Diabetes Prediction System
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <!-- CSS Files -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/css/paper-kit.css?v=2.2.0" rel="stylesheet" />
+   <!--  jQuery  -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   
+  <script>
+    var apiResult = "";
+
+    function apiStart() {
+      var pregnancies2 = parseInt(localStorage.getItem("pregnancies"));
+      var glucose2 = parseInt(localStorage.getItem("glucose"));
+      var bloodpressure2 = parseInt(localStorage.getItem("bloodpressure"));
+      var skinthickness2 = parseInt(localStorage.getItem("skinthickness"));
+      var insulin2 = parseInt(localStorage.getItem("insulin"));
+      var bmi2 = parseInt(localStorage.getItem("bmi"));
+      var diabetespedigreefunction2 = parseInt(localStorage.getItem("diabetespedigreefunction"));
+      var age2 = parseInt(localStorage.getItem("age"));
+      var name2 = parseInt(localStorage.getItem("name"));
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          apiResult = this.responseText;
+          $("#exampleModalCenter").modal('toggle');
+        }
+        else if (this.readyState == 4 && this.status == 0) {
+          showAlertdanger();
+        }
+      };
+
+      var myobj = [{ "Pregnancies": pregnancies2, "Glucose": glucose2, "BloodPressure": bloodpressure2, "SkinThickness": skinthickness2, "Insulin": insulin2, "BMI": bmi2, "DiabetesPedigreeFunction": diabetespedigreefunction2, "Age": age2}];
+      var jsn = JSON.stringify(myobj);
+      xhttp.open("POST", "http://127.0.0.1:12345/predict", true);
+      xhttp.setRequestHeader("Content-type", "application/json");
+      xhttp.send(jsn);
+    }
+
+    function putData() {
+      var pregnancies = document.getElementById("pregnancies").value;
+      var glucose = document.getElementById("glucose").value;
+      var bloodpressure = document.getElementById("bloodpressure").value;
+      var skinthickness = document.getElementById("skinthickness").value;
+      var insulin = document.getElementById("insulin").value;
+      var bmi = document.getElementById("bmi").value;
+      var diabetespedigreefunction = document.getElementById("diabetespedigreefunction").value;
+      var age = document.getElementById("age").value;
+      var name = document.getElementById("name").value;
+
+      localStorage.setItem("pregnancies", pregnancies);
+      localStorage.setItem("glucose", glucose);
+      localStorage.setItem("bloodpressure", bloodpressure);
+      localStorage.setItem("skinthickness", skinthickness);
+      localStorage.setItem("insulin", insulin);
+      localStorage.setItem("bmi", bmi);
+      localStorage.setItem("diabetespedigreefunction", diabetespedigreefunction);
+      localStorage.setItem("age", age);
+      localStorage.setItem("name", name);
+    }
+
+    function genratePdf() {
+  
+      pregnancies3 = localStorage.getItem("pregnancies");
+      glucose3 = localStorage.getItem("glucose");
+      bloodpressure3 = localStorage.getItem("bloodpressure")
+      skinthickness3 = localStorage.getItem("skinthickness")
+      insulin3 = localStorage.getItem("insulin");
+      bmi3 = localStorage.getItem("bmi");
+      diabetespedigreefunction3 = localStorage.getItem("diabetespedigreefunction");
+      age3 = localStorage.getItem("age");
+      name3 = localStorage.getItem("name");
+      result = apiResult;
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'pregnancies3',
+        name: 'pregnancies3',
+        value: pregnancies3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'glucose3',
+        name: 'glucose3',
+        value: glucose3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'bloodpressure3',
+        name: 'bloodpressure3',
+        value: bloodpressure3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'skinthickness3',
+        name: 'skinthickness3',
+        value: skinthickness3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'insulin3',
+        name: 'insulin3',
+        value: insulin3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'bmi3',
+        name: 'bmi3',
+        value: bmi3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'diabetespedigreefunction3',
+        name: 'diabetespedigreefunction3',
+        value: diabetespedigreefunction3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'age3',
+        name: 'age3',
+        value: age3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'name3',
+        name: 'name3',
+        value: name3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'result',
+        name: 'result',
+        value: result
+      }).appendTo('#report');
+    }
+
+    $(function () {
+      $('#form1').submit(function (event) {
+        event.preventDefault();// using this page stop being refreshing 
+        $.ajax({
+          type: 'POST',
+          url: 'php/insertintopredict.php',
+          data: $('#form1').serialize(),
+          success: function () {
+            apiStart();
+            $("#name").val("");
+            $("#pregnancies").val("");
+            $("#glucose").val("");
+            $("#bloodpressure").val("");
+            $("#skinthickness").val("");
+            $("#insulin").val("");
+            $("#bmi").val("");
+            $("#diabetespedigreefunction").val("");
+            $("#age").val("");
+          }
+        });
+      });
+    });
+
+    $(function () {
+      $('#msg').submit(function (event) {
+        event.preventDefault();// using this page stop being refreshing 
+        $.ajax({
+          type: 'POST',
+          url: 'php/insertintocontact.php',
+          data: $('#msg').serialize(),
+          success: function () {
+            $("#contactclick").css("visibility", "visible");
+            $("#name02").val("");
+            $("#email02").val("");
+            $("#msg02").val("");
+            showAlert();
+          }
+        });
+
+      });
+    });
+
+    function showAlert() {
+      if ($("#myAlert").find("div#myAlert2").length == 0) {
+        $("#myAlert").append("<div class='alert alert-success alert-dismissable' id='myAlert2'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button> Success! message sent successfully.</div>");
+      }
+      $("#myAlert").css("display", "");
+    }
+
+    function showAlertdanger() {
+      if ($("#Alert").find("div#Alert2").length == 0) {
+        $("#Alert").append("<div class='alert alert-danger alert-dismissable' id='Alert2'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button> Unsuccessfull! Api doesn't respond.</div>");
+      }
+      $("#Alert").css("display", "");
+    }
+
+    $(document).ready(function (){
+            $("#linkscroll1").click(function (){
+                $('html, body').animate({
+                    scrollTop: $("#product").offset().top
+                }, 1500);
+            });
+            $("#linkscroll2").click(function (){
+                $('html, body').animate({
+                    scrollTop: $("#predictor").offset().top
+                }, 1500);
+            });
+            $("#linkscroll3").click(function (){
+                $('html, body').animate({
+                    scrollTop: $("#team").offset().top
+                }, 1500);
+            });
+            $("#linkscroll4").click(function (){
+                $('html, body').animate({
+                    scrollTop: $("#contact").offset().top
+                }, 1500);
+            });
+            $("#linkscroll5").click(function (){
+                $('html, body').animate({
+                    scrollTop: $("#facts").offset().top
+                }, 1500);
+            });
+        });
+
+  </script>
+</head>
+
+<body class="landing-page sidebar-collapse">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
+    <div class="container">
+      <div class="navbar-translate">
+        <img src="assets/img/logo2-1.png" alt="Diabetes Prediction System" height="30" width="auto">
+        <a class="navbar-brand" href="#" rel="tooltip" data-placement="bottom">
+          Diabetes Prediction System
+        </a>
+        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navigation">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a id="linkscroll1" href="#product" class="nav-link">What we do</a>
+          </li>
+          <li class="nav-item">
+            <a id="linkscroll2" href="#predictor" class="nav-link">Predictor</a>
+          </li>
+          <li class="nav-item">
+            <a id="linkscroll3" href="#team" class="nav-link">Team</a>
+          </li>
+          <li class="nav-item">
+            <a id="linkscroll4" href="#contact" class="nav-link">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+  <div class="page-header" data-parallax="true" style="background-image: url('assets/img/dna1.jpg');">
+    <div class="filter"></div>
+    <div class="container">
+      <div class="motto text-center">
+        <h1><b>Hope for a better tomorrow</b></h1>
+        <h3>Predict your chance of having diabetes because prevention is better than cure!</h3>
+        <br />
+        <a id="linkscroll5" href="#facts" class="btn btn-outline-neutral btn-round">Get Started</a>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="section text-center" id="facts">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9 ml-auto mr-auto">
+            <h2 class="title">Let's talk facts</h2>
+            <h5>People with diabetes have an increased risk of developing a number of serious health problems. Consistently high blood glucose levels can lead to serious diseases affecting the heart and blood vessels, eyes, kidneys, nerves and teeth. In addition, people with diabetes also have a higher risk of developing infections. In almost all high-income countries, diabetes is a leading cause of cardiovascular disease, blindness, kidney failure, and lower limb amputation.</h5>
+            <h4 class="info-title">In 2019,</h4><br>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 ml-auto mr-auto">
+            <p>Approximately 463 million adults (20-79 years) were living with diabetes, by 2045 this will rise to 700 million.</p>
+            <p>Diabetes caused at least USD 760 billion dollars in health expenditure in 2019 – 10% of total spending on adults.</p>
+            <p>More than 20 million live births (1 in 6 live births) are affected by diabetes during pregnancy.</p>
+            <p>More than 1.1 million children and adolescents are living with type 1 diabetes.</p>
+            <p>The proportion of people with type 2 diabetes is increasing in most countries.</p>
+            <p>79% of adults with diabetes were living in low- and middle-income countries.</p>
+            <p>374 million people are at increased risk of developing type 2 diabetes.</p>
+            <p>1 in 5 of the people who are above 65 years old have diabetes.</p>
+            <p>1 in 2 (232 million) people with diabetes were undiagnosed.</p>
+            <p>Diabetes caused 4.2 million deaths.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section section-dark text-center" id="product">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9 ml-auto mr-auto">
+            <h2 class="title">What we do</h2>
+            <h5 class="description">Improving quality of care and outcomes for all individuals. Our AI based platform allows for better collection and application of real world data for diabetes related decisions, for the benefit of the patient.</h5>
+            <h5 class="description">Our mission is to help everyone to stay healthy, sustain a high quality of life, and prevent irreversible diabetic conditions.</h5>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+          <div class="col-md-11 ml-auto mr-auto">
+            <h5 class="description">DPS calculates the risk of having diabetes, against some of the attributes related to the patient health.</h5>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <p class="description"><b>Pregnancies :</b> Number of times pregnant</p>
+            <p class="description"><b>Glucose :</b> Plasma glucose concentration in an oral glucose tolerance test (mg/dl)</p>
+            <p class="description"><b>BloodPressure :</b> Diastolic blood pressure (mm/Hg)</p>
+            <p class="description"><b>SkinThickness :</b> Triceps skin fold thickness (mm)</p>
+            <p class="description"><b>Insulin :</b> 2-Hour serum insulin (mu U/ml)</p>
+            <p class="description"><b>BMI :</b> Body mass index (weight in kg/(height in m)^2)</p>
+            <p class="description"><b>DiabetesPedigreeFunction :</b> Diabetes pedigree function</p>
+            <p class="description"><b>Age :</b> Age (years)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section landing-section" id="predictor">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <h2 class="text-center" id="contactclick" style="height:30px;">
+              <div class="container" style="display:none;" id="Alert">
+                <div class="alert alert-danger alert-dismissable " id="Alert2">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    Unsuccessfull! Api Doesn't Respond..
+                </div>
+            </div>
+            </h2>
+            <h2 class="text-center">Predictor</h2>
+
+            <form class="contact-form" id="form1">
+
+              <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                  <label>Name</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-tile-56"></i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control border" name="thai" placeholder="Name" id="name" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Pregnancies</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-tile-56"></i>
+                      </span>
+                    </div>
+                    <input type="number" min="0" max="17" class="form-control border" name="pregnancies" placeholder="Pregnancies ( 0 - 17 )" id="pregnancies" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label>Glucose</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-tile-56"></i>
+                      </span>
+                    </div>
+                    <input type="number" min="1" max="199" class="form-control border" name="glucose" placeholder="Glucose Level ( 1 - 199 )" id="glucose" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Blood Pressure</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-tile-56"></i>
+                      </span>
+                    </div>
+                    <input type="number" min="1" max="122" class="form-control border" name="bloodpressure" placeholder="Blood Pressure ( 1 - 122 )" id="bloodpressure" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label>Skin Thickness</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-tile-56"></i>
+                      </span>
+                    </div>
+                    <input type="number" min="1" max="99" class="form-control border" name="skinthickness" placeholder="Skin Thickness ( 1 - 99 )" id="skinthickness" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Insulin</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-tile-56"></i>
+                      </span>
+                    </div>
+                    <input type="number" min="1" max="846" class="form-control border" name="insulin" placeholder="Insulin ( 1 - 846 )" id="insulin" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label>Body Mass Index</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-tile-56"></i>
+                      </span>
+                    </div>
+                    <input type="number" min="1" max="67.1" step=0.01 class="form-control border" name="bmi" placeholder="BMI ( 1 - 67.1 )" id="bmi" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Diabetes Pedigree Function</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-tile-56"></i>
+                      </span>
+                    </div>
+                    <input type="number" min="0.08" max="2.42" step=0.001 class="form-control border" name="diabetespedigreefunction" placeholder="Diabetes Pedigree Function ( 0.08 - 2.42 )" id="diabetespedigreefunction" required>
+                  </div>
+                </div>
+                  <div class="col-md-6">
+                    <label>Age</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="nc-icon nc-tile-56"></i>
+                        </span>
+                      </div>
+                      <input type="number" min="21" max="81" class="form-control border" name="age" placeholder="Age ( 21 - 81 )" id="age" required>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-2 ml-auto mr-auto">
+                  <button class="btn btn-danger btn-lg btn-fill" type="submit" onclick="putData()">Predict</button>
+                </div>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section section-dark text-center" id="team">
+      <div class="container">
+        <h2 class="title">Let's talk about us</h2>
+        <div class="col-md-9 ml-auto mr-auto">
+          <br>
+          <h5 class="description">We are motivated data scientists and machine learning experts intensely focused on improving the quality of healthcare.</h5>
+          <br>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card card-profile card-plain">
+              <div class="card-avatar">
+                <a href="#avatar">
+                  <img src="assets/img/jamal.jpg" alt="...">
+                </a>
+              </div>
+              <div class="card-body">
+                <a href="#paper-kit">
+                  <div class="author">
+                    <h4 class="card-title">Muhammad Jamal Tariq</h4>
+                    <h6 class="card-category">CEO, Co-Founder</h6>
+                  </div>
+                </a>
+                <p class="card-description text-center">
+                  Teamwork is so important that it is virtually impossible for you to reach the heights of your capabilities or make the money that you want without becoming very good at it.
+                </p>
+              </div>
+              <div class="card-footer text-center">
+                <a href="https://www.facebook.com/jamaltariqcheema" target="_blank" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.instagram.com/jamaltariqcheema/" target="_blank" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/jamaltariqcheema/" target="_blank" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card card-profile card-plain">
+              <div class="card-avatar">
+                <a href="#avatar">
+                  <img src="assets/img/ashir.jpg" alt="...">
+                </a>
+              </div>
+              <div class="card-body">
+                <a href="#paper-kit">
+                  <div class="author">
+                    <h4 class="card-title">Muhammad Ashir Abbas Khan</h4>
+                    <h6 class="card-category">CTO, Co-Founder</h6>
+                  </div>
+                </a>
+                <p class="card-description text-center">
+                  The strength of the team is each individual member. The strength of each member is the team. If you can laugh together, you can work together, silence isn’t golden, it’s deadly.
+                </p>
+              </div>
+              <div class="card-footer text-center">
+                <a href="https://www.facebook.com/ashir.khan.758" target="_blank" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.instagram.com/ashir_khan666/" target="_blank" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/ashir-khan-218a17132/" target="_blank" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section landing-section" id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <h2 class="text-center" id="contactclick" style="height:30px;">
+              <div class="container" style="display:none;" id="myAlert">
+                <div class="alert alert-success alert-dismissable" id="myAlert2">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"  >&times;</button>
+                    <b>Success! Message sent successfully.</b>
+                </div>
+            </div>
+            </h2>
+            <h2 class="text-center">Keep in touch?</h2>
+            <form class="contact-form" action="php/insertintocontact.php" method="post" id="msg">
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Name</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-single-02"></i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control" name="name" placeholder="Name" id="name02" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label>Email</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-email-85"></i>
+                      </span>
+                    </div>
+                    <input type="email" class="form-control" name="email" placeholder="Email" id="email02" required>
+                  </div>
+                </div>
+              </div>
+              <label>Message</label>
+              <textarea class="form-control" rows="4" name="message" placeholder="Tell us your thoughts and feelings..." id="msg02" required></textarea>
+              <div class="row">
+                <div class="col-md-4 ml-auto mr-auto">
+                  <button class="btn btn-danger btn-lg btn-fill" type="submit">Send Message</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+<footer class="page-footer font-small">
+  <div class="footer-copyright text-center py-3">
+    Copyright © 2020 Diabetes Prediction System - All Rights Reserved.
+  </div>
+</footer>
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle"><b>Diabetes Prediction System </b></h5>
+        </div>
+        <div class="modal-body">
+          Your reoprt is ready to download.<br>
+          Click "Download Now" to download your report.
+        </div>
+        <div class="modal-footer">
+          <br><br><br>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form id="report" action="report/report.php" method="POST" target="_blank">
+            <button type="submit" class="btn btn-danger" onclick="genratePdf()">Download Now</button>
+          </form>
+          &nbsp;&nbsp;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--   Core JS Files   -->
+  <script src="assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <!-- Control Center for Paper Kit: parallax effects -->
+  <script src="assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
+</body>
+
+</html>
