@@ -8,6 +8,8 @@ This repository contains portfolio of data science and machine learning projects
 
 1. [Diabetes Prediction System](https://github.com/jamaltariqcheema/data-science-portfolio/tree/master/Diabetes%20Prediction%20System) - An online web service that will predict your chance of having diabetes using machine learning. The front-end is developed using HTML, CSS, JavaScript, jQuery and Bootstrap, and back-end is developed using PHP, Python and MySQL(database).
 
+2. [CARDISYS - Heart Disease Prediction System](https://github.com/jamaltariqcheema/data-science-portfolio/tree/master/CARDISYS%20-%20Heart%20Disease%20Prediction%20System) - An online web service that will predict your chance of having heart attack using machine learning. The front-end is developed using HTML, CSS, JavaScript, jQuery and Bootstrap, and back-end is developed using PHP, Python and MySQL(database).
+
 ### Education
 
 #### Formal Education
