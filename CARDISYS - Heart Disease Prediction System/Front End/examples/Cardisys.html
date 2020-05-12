@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img//apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img//favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Cardisys
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+    name='viewport' />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Spinnaker&display=swap" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <!-- CSS Files -->
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../assets/css/paper-kit.css?v=2.2.0" rel="stylesheet" />
+  <!--  jQuery  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    var apiResult = "";
+
+    function apiStart() {
+
+      var age2 = parseInt(localStorage.getItem("age"));
+      var sex2 = parseInt(localStorage.getItem("sex"));
+      var cp2 = parseInt(localStorage.getItem("cp"));
+      var trestbps2 = parseInt(localStorage.getItem("trestbps"));
+      var chol2 = parseInt(localStorage.getItem("chol"));
+      var fbps2 = parseInt(localStorage.getItem("fbps"));
+      var restecg2 = parseInt(localStorage.getItem("restecg"));
+      var thalach2 = parseInt(localStorage.getItem("thalach"));
+      var exang2 = parseInt(localStorage.getItem("exang"));
+      var oldpeak2 = parseFloat(localStorage.getItem("oldpeak"));
+      var slope2 = parseInt(localStorage.getItem("slope"));
+      var ca2 = parseInt(localStorage.getItem("ca"));
+      var thal2 = parseInt(localStorage.getItem("thal"));
+      var name2 = parseInt(localStorage.getItem("name"));
+
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          apiResult = this.responseText;
+
+          $("#exampleModalCenter").modal('toggle');
+        }
+        else if (this.readyState == 4 && this.status == 0) {
+          showAlertdanger();
+        }
+
+      };
+      var myobj = [{ "Age": age2, "Sex": sex2, "Cp": cp2, "trestbps": trestbps2, "chol": chol2, "fbs": fbps2, "restecg": restecg2, "thalach": thalach2, "exang": exang2, "oldpeak": oldpeak2, "slope": slope2, "ca": ca2, "thal": thal2 }];
+      var jsn = JSON.stringify(myobj);
+      xhttp.open("POST", "http://127.0.0.1:12345/predict", true);
+      xhttp.setRequestHeader("Content-type", "application/json");
+      xhttp.send(jsn);
+    }
+
+
+
+    function putData() {
+
+      var age = document.getElementById("age").value;
+      var sex = document.getElementById("sex").value;
+      var cp = document.getElementById("cp").value;
+      var trestbps = document.getElementById("trestbps").value;
+      var chol = document.getElementById("chol").value;
+      var fbps = document.getElementById("fbps").value;
+      var restecg = document.getElementById("restecg").value;
+      var thalach = document.getElementById("thalach").value;
+      var exang = document.getElementById("exang").value;
+      var oldpeak = document.getElementById("oldpeak").value;
+      var slope = document.getElementById("slope").value;
+      var ca = document.getElementById("ca").value;
+      var thal = document.getElementById("thal").value;
+      var name = document.getElementById("name").value;
+
+      localStorage.setItem("age", age);
+      localStorage.setItem("sex", sex);
+      localStorage.setItem("cp", cp);
+      localStorage.setItem("trestbps", trestbps);
+      localStorage.setItem("chol", chol);
+      localStorage.setItem("fbps", fbps);
+      localStorage.setItem("restecg", restecg);
+      localStorage.setItem("thalach", thalach);
+      localStorage.setItem("exang", exang);
+      localStorage.setItem("oldpeak", oldpeak);
+      localStorage.setItem("slope", slope);
+      localStorage.setItem("ca", ca);
+      localStorage.setItem("thal", thal);
+      localStorage.setItem("name", name);
+
+    }
+
+
+    function genratePdf() {
+      // doc.text(apiResult, 105, 230, null, null, 'center');
+
+      age3 = localStorage.getItem("age");
+      sex3 = localStorage.getItem("sex");
+      cp3 = localStorage.getItem("cp")
+      trestbps3 = localStorage.getItem("trestbps")
+      chol3 = localStorage.getItem("chol");
+      fbps3 = localStorage.getItem("fbps");
+      restecg3 = localStorage.getItem("restecg");
+      thalach3 = localStorage.getItem("thalach");
+      exang3 = localStorage.getItem("exang");
+      oldpeak3 = localStorage.getItem("oldpeak");
+      slope3 = localStorage.getItem("slope");
+      ca3 = localStorage.getItem("ca");
+      thal3 = localStorage.getItem("thal");
+      name3 = localStorage.getItem("name");
+      result = apiResult;
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'age3',
+        name: 'age3',
+        value: age3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'sex3',
+        name: 'sex3',
+        value: sex3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'cp3',
+        name: 'cp3',
+        value: cp3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'trestbps3',
+        name: 'trestbps3',
+        value: trestbps3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'chol3',
+        name: 'chol3',
+        value: chol3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'fbps3',
+        name: 'fbps3',
+        value: fbps3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'restecg3',
+        name: 'restecg3',
+        value: restecg3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'thalach3',
+        name: 'thalach3',
+        value: thalach3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'exang3',
+        name: 'exang3',
+        value: exang3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'oldpeak3',
+        name: 'oldpeak3',
+        value: oldpeak3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'slope3',
+        name: 'slope3',
+        value: slope3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'ca3',
+        name: 'ca3',
+        value: ca3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'thal3',
+        name: 'thal3',
+        value: thal3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'name3',
+        name: 'name3',
+        value: name3
+      }).appendTo('#report');
+
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'result',
+        name: 'result',
+        value: result
+      }).appendTo('#report');
+
+    }
+
+    $(function () {
+      $('#form1').submit(function (event) {
+
+        event.preventDefault();// using this page stop being refreshing 
+
+        $.ajax({
+          type: 'POST',
+          url: 'php/insertintopredict.php',
+          data: $('#form1').serialize(),
+          success: function () {
+            apiStart();
+            $("#name").val("");
+            $("#age").val("");
+            $("#sex").val("");
+            $("#cp").val("");
+            $("#trestbps").val("");
+            $("#thal").val("");
+            $("#thalach").val("");
+            $("#ca").val("");
+            $("#slope").val("");
+            $("#oldpeak").val("");
+            $("#exang").val("");
+            $("#restecg").val("");
+            $("#fbps").val("");
+            $("#chol").val("");
+
+
+          }
+        });
+
+      });
+    });
+
+    $(function () {
+
+      $('#msg').submit(function (event) {
+        event.preventDefault();// using this page stop being refreshing 
+        $.ajax({
+          type: 'POST',
+          url: 'php/insertintocontact.php',
+          data: $('#msg').serialize(),
+          success: function () {
+            $("#contactclick").css("visibility", "visible");
+            $("#name02").val("");
+            $("#email02").val("");
+            $("#msg02").val("");
+            showAlert();
+          }
+        });
+
+      });
+    });
+
+    $(window).scroll(function () {
+      var height = $(window).scrollTop();
+      if (height > 100) {
+        $('#back2Top').fadeIn();
+      } else {
+        $('#back2Top').fadeOut();
+      }
+    });
+    $(document).ready(function () {
+      $("#back2Top").click(function (event) {
+        event.preventDefault();
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
+      });
+
+    });
+
+
+    function showAlert() {
+      if ($("#myAlert").find("div#myAlert2").length == 0) {
+        $("#myAlert").append("<div class='alert alert-success alert-dismissable' id='myAlert2'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button> Success! message sent successfully.</div>");
+      }
+      $("#myAlert").css("display", "");
+    }
+
+
+
+
+    function showAlertdanger() {
+      if ($("#Alert").find("div#Alert2").length == 0) {
+        $("#Alert").append("<div class='alert alert-danger alert-dismissable' id='Alert2'> <button type='button' class='close' data-dismiss='alert'  aria-hidden='true'>&times;</button> Unsuccessfull! Api does'nt respond.</div>");
+      }
+      $("#Alert").css("display", "");
+    }
+
+
+
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    #back2Top {
+      width: 100px;
+      line-height: 40px;
+      overflow: hidden;
+      z-index: 999;
+      display: none;
+      cursor: pointer;
+      -moz-transform: rotate(270deg);
+      -webkit-transform: rotate(270deg);
+      -o-transform: rotate(270deg);
+      -ms-transform: rotate(270deg);
+      transform: rotate(270deg);
+      position: fixed;
+      bottom: 50px;
+      right: 25px;
+      background-color: transparent;
+      color: #555;
+      text-align: center;
+      font-size: 50px;
+      text-decoration: none;
+    }
+
+    #back2Top:hover {
+      background-color: transparent;
+      color: #000;
+    }
+  </style>
+
+
+</head>
+
+
+<body class="landing-page sidebar-collapse" style="position: relative;">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="#" rel="tooltip" title="Coded by Tabish Amin" data-placement="bottom"
+          target="_blank" style="font-family: 'Spinnaker', sans-serif;">
+          Cardisys
+        </a>
+        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+    </div>
+    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a href="#Instructions" class="nav-link" style="font-family: 'Spinnaker', sans-serif;"> Instructions</a>
+        </li>
+        <li class="nav-item">
+          <a href="#Predictor" class="nav-link" style="font-family: 'Spinnaker', sans-serif;"> Predictor</a>
+        </li>
+        <li class="nav-item">
+          <a href="#About" class="nav-link" style="font-family: 'Spinnaker', sans-serif;"> About&nbspUs</a>
+        </li>
+        <li class="nav-item">
+          <a href="#Contact" class="nav-link" style="font-family: 'Spinnaker', sans-serif;"> Contact&nbspUs</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+
+  <div class="page-header" data-parallax="true" style="background-image: url('../assets/img/ts.png');">
+    <div class="filter"></div>
+    <div class="container">
+      <div class="motto text-center">
+        <h1 style="font-family: 'Spinnaker', sans-serif;">Heart Disease Prediction</h1>
+        <h3 style="font-family: 'Spinnaker', sans-serif;">Calculate The Risk Of Cardiovasular Disease.</h3>
+        <br />
+        <a href="#main" class="btn btn-outline-neutral btn-round" style="font-family: 'Spinnaker', sans-serif;"> Get
+          Started </a>
+      </div>
+    </div>
+  </div>
+  <div class="main" id="main">
+    <div class="section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <h2 class="title a" style=" font-family: 'Spinnaker', sans-serif;">Let's talk product</h2>
+            <h5 style="font-family: 'Spinnaker', sans-serif;"> Predict your chance of having a heart disease because
+              prevention is better than
+              cure!</h5>
+            <br>
+            <h5 style="font-family: 'Spinnaker', sans-serif;"> This Calculator Calculates The Risk Of Having
+              Cardiovasular Disease, Againts Some Of The Attributes
+              Related To The Patient Health.<br>
+              <br>
+              Following Are The Required Attributes:<br><br>
+              <ul style="list-style-type:none;">
+                <li> Age </li>
+                <li> Sex </li>
+                <li> Chest Pain Type </li>
+                <li> Resting Blood Pressure </li>
+                <li> Serum Cholestoral </li>
+                <li> Fasting Blood Sugar </li>
+                <li> Resting Electrocardiographic Results </li>
+                <li> Thalach </li>
+                <li> Exercise Induced Angina </li>
+                <li> Oldpeak </li>
+                <li> Slope Of The Peak Exercise </li>
+                <li> Ca </li>
+                <li> Thal </li>
+              </ul>
+            </h5>
+          </div>
+        </div>
+        <br />
+        <br />
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" style="height: 15px;background-color:lightgray;"> </div>
+  <div class="section landing-section" id="Predictor">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <h2 class="text-center" id="contactclick" style="height:30px;">
+
+            <div class="container" style="display:none;" id="Alert">
+             
+              <div class="alert alert-danger alert-dismissable " id="Alert2">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  Unsuccessfull! Api Does'nt Responde..
+              </div>
+      
+          </div>
+
+          </h2>
+          <h2 class="text-center">Predict</h2>
+          <div class="row">
+            <p>&nbsp;</p>
+          </div>
+          <form class="contact-form" id="form1">
+            <div class="row">
+              <div class="col-md-6 ml-auto mr-auto">
+                <label>Name</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-layout-11"></i>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control border" name="thai" placeholder="Name" id="name" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <label>Age In Years</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-layout-11"></i>
+                    </span>
+                  </div>
+                  <input type="number" min="20" max="120" class="form-control border" name="age"
+                    placeholder="Age ( 20 - 120 )" id="age" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Sex</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-layout-11"></i>
+                    </span>
+                  </div>
+                  <select name="sex" class="form-control border" id="sex" aria-placeholder="sex" required>
+                    <option value="">-- Choose Option --</option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Chest Pain</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-layout-11"></i>
+                    </span>
+                  </div>
+                  <select name="cp" class="form-control border" id="cp" aria-placeholder="cp" required>
+                    <option value="">-- Choose Option --</option>
+                    <option value="1">Typical Angina</option>
+                    <option value="2">Atypical Angina</option>
+                    <option value="3">Non-Angina Pain</option>
+                    <option value="4">Asymptomatic</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Resting Blood Pressure</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-layout-11"></i>
+                    </span>
+                  </div>
+                  <input type="number" min="60" max="200" class="form-control border" name="trestbps"
+                    placeholder="Trestbps ( 60 - 200 )" id="trestbps" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Serum Cholestrol</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-layout-11"></i>
+                    </span>
+                  </div>
+                  <input type="number" min="120" max="600" class="form-control border" name="chol"
+                    placeholder="Chol ( 120 - 600 )" id="chol" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Fasting Blood Sugar</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-layout-11"></i>
+                    </span>
+                  </div>
+                  <select name="fbps" class="form-control border" id="fbps" aria-placeholder="fbps" required>
+                    <option value="">-- Choose Option --</option>
+                    <option value="0"> &lt;120 </option>
+                    <option value="1"> &gt;120 </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Resting Electrocardioghraphic</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-layout-11"></i>
+                    </span>
+                  </div>
+                  <select name="restecg" class="form-control border" id="restecg" aria-placeholder="restecg" required>
+                    <option value="">-- Choose Option --</option>
+                    <option value="0"> Normal </option>
+                    <option value="1"> Having ST-T Wave Abnormality </option>
+                    <option value="2"> Probable Or Definite Left Ventricular Hypertrophy </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Maximum Heart Rate Achived</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-layout-11"></i>
+                    </span>
+                  </div>
+                  <input type="number" min="60" max="200" class="form-control border" name="thalach"
+                    placeholder="Thalach ( 60 - 200 )" id="thalach" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Exercise Induced Angina</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-layout-11"></i>
+                    </span>
+                  </div>
+                  <select name="exang" class="form-control border" id="exang" aria-placeholder="exang" required>
+                    <option value="">-- Choose Option --</option>
+                    <option value="1"> Yes </option>
+                    <option value="2"> No </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Oldpeak</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-layout-11"></i>
+                    </span>
+                  </div>
+                  <input type="number" min="0" max="7.0" class="form-control border" step="0.1" name="oldpeak"
+                    placeholder="Oldpeak ( 0 - 7.0 )" id="oldpeak" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Slope Of Peak Exercise ST Segment</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-layout-11"></i>
+                    </span>
+                  </div>
+                  <select name="slope" class="form-control border" id="slope" aria-placeholder="slope" required>
+                    <option value="">-- Choose Option --</option>
+                    <option value="1"> Upsloping </option>
+                    <option value="2"> Flat </option>
+                    <option value="3"> DownSloping </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Vessels Coloured By Flourosopy</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-layout-11"></i>
+                    </span>
+                  </div>
+                  <input type="number" min="0" max="3" class="form-control border" name="ca" placeholder="Ca ( 0 - 3 )"
+                    id="ca" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 ml-auto mr-auto">
+                <label>Thal</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-layout-11"></i>
+                    </span>
+                  </div>
+                  <select name="thal" class="form-control border" id="thal" aria-placeholder="thal" required>
+                    <option value="">-- Choose Option --</option>
+                    <option value="3"> Normal </option>
+                    <option value="6"> Fixed Defect </option>
+                    <option value="7"> Reversible Defect </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2 ml-auto mr-auto">
+                <button class="btn btn-danger btn-lg btn-fill" type="submit" onclick="putData()">Predict</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section section-dark text-center" id="About">
+    <div class="container" style="font-family: 'Spinnaker', sans-serif;">
+      <h2 class="title">Let's talk about us</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card card-profile card-plain">
+            <div class="card-avatar">
+              <a href="#avatar">
+                <img src="../assets/img/faces/usman.jpg" alt="...">
+              </a>
+            </div>
+            <div class="card-body">
+              <a href="#paper-kit">
+                <div class="author">
+                  <h4 class="card-title">Usman Khalid</h4>
+                  <h6 class="card-category">Designer</h6>
+                </div>
+              </a>
+              <p class="card-description text-center">
+                A group becomes a team when each member is sure enough of himself and his contribution to praise the
+                skill of the others. No one can whistle a symphony.
+              </p>
+            </div>
+            <div class="card-footer text-center">
+              <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-twitter"></i></a>
+              <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-google-plus"></i></a>
+              <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-profile card-plain">
+            <div class="card-avatar">
+              <a href="#avatar">
+                <img src="../assets/img/faces/tabi.jpg" alt="...">
+              </a>
+            </div>
+            <div class="card-body">
+              <a href="#paper-kit">
+                <div class="author">
+                  <h4 class="card-title">Tabish Amin</h4>
+                  <h6 class="card-category">Project Manager</h6>
+                </div>
+              </a>
+              <p class="card-description text-center">
+                Teamwork is so important that it is virtually impossible for you to reach the heights of your
+                capabilities or make the money that you want without becoming very good at it.
+              </p>
+            </div>
+            <div class="card-footer text-center">
+              <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-twitter"></i></a>
+              <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-google-plus"></i></a>
+              <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-profile card-plain">
+            <div class="card-avatar">
+              <a href="#avatar">
+                <img src="../assets/img/faces/amjad.jpg" alt="...">
+              </a>
+            </div>
+            <div class="card-body">
+              <a href="#paper-kit">
+                <div class="author">
+                  <h4 class="card-title">Amjad Ali</h4>
+                  <h6 class="card-category">Developer</h6>
+                </div>
+              </a>
+              <p class="card-description text-center">
+                The strength of the team is each individual member. The strength of each member is the team. If you
+                can
+                laugh together, you can work together, silence isn’t golden, it’s deadly.
+              </p>
+            </div>
+            <div class="card-footer text-center">
+              <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-twitter"></i></a>
+              <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-google-plus"></i></a>
+              <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section landing-section" id="Contact">
+    <div class="container" style="font-family: 'Spinnaker', sans-serif;">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+          <h2 class="text-center" id="contactclick" style="height:30px;">
+
+            <div class="container" style="display:none;" id="myAlert">
+             
+              <div class="alert alert-success alert-dismissable" id="myAlert2">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true"  >&times;</button>
+                  Success! Message sent successfully.
+              </div>
+      
+          </div>
+
+          </h2>
+          <h2 class="text-center">Keep in touch?</h2>
+          <form class="contact-form" action="php/insertintocontact.php" method="post" id="msg">
+            <div class="row">
+              <div class="col-md-6">
+                <label>Name</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-single-02"></i>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control" name="name" placeholder="Name" id="name02" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label>Email</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="nc-icon nc-email-85"></i>
+                    </span>
+                  </div>
+                  <input type="text" class="form-control" name="email" placeholder="Email" id="email02" required>
+                </div>
+              </div>
+            </div>
+            <label>Message</label>
+            <textarea class="form-control" rows="4" name="message" placeholder="Tell us your thoughts and feelings..."
+              id="msg02" required></textarea>
+            <div class="row">
+              <div class="col-md-4 ml-auto mr-auto">
+                <button class="btn btn-danger btn-lg btn-fill" type="submit">Send Message</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer   footer-white ">
+    <div class="container">
+      <div class="row">
+        <div class="credits ml-auto">
+          <span class="copyright">
+            ©
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, made with <i class="fa fa-heart heart"></i> by BSCS-S19-002
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Cardisys </h5>
+        </div>
+        <div class="modal-body">
+          Your Reoprt Is Ready To Download.<br>
+          Click "Download Now" To Download Your Report.
+        </div>
+        <div class="modal-footer">
+          <br><br><br>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form id="report" action="report/report.php" method="POST">
+            <button type="submit" class="btn btn-danger" onclick="genratePdf()">Download Now</button>
+          </form>
+          &nbsp;&nbsp;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="back2Top" title="Back to top" href="#" style="border-radius:50%; "><i class="fa fa-arrow-circle-right"></i></a>
+
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+  <script src="../assets/js/plugins/moment.min.js"></script>
+  <script src="../assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
+  <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
+</body>
+
+</html>s
