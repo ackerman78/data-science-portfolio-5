@@ -16,7 +16,7 @@ This repository contains portfolio of data science and machine learning projects
 
 * B.Sc. in Computer Science, [Bahria University](https://bahria.edu.pk)
   * CGPA: 3.2
-  * Duration: 09.2016 - 06.2020
+  * Duration: Sep 2016 - Present
 
 #### Online Courses
 
@@ -25,7 +25,7 @@ List of online courses I enrolled to in order to acquire knowledge and build my 
 * Coursera Professional Certificate - [IBM Data Science Professional Certificate](https://www.coursera.org/professional-certificates/ibm-data-science)
 * Coursera Specialization - [Applied Data Science with Python Specialization](https://www.coursera.org/specializations/data-science-python)
 * Coursera Specialization - [Data Science Specialization](https://www.coursera.org/specializations/jhu-data-science)
-* DataCamp Carrer Track - [Data Scientist with Python](https://www.datacamp.com/tracks/data-scientist-with-python)
+* DataCamp Career Track - [Data Scientist with Python](https://www.datacamp.com/tracks/data-scientist-with-python)
 * Kaggle Micro Course - [Python](https://www.kaggle.com/learn/python)
 * Kaggle Micro Course - [Intro to Machine Learning](https://www.kaggle.com/learn/intro-to-machine-learning)
 * Kaggle Micro Course - [Intermediate Machine Learning](https://www.kaggle.com/learn/intermediate-machine-learning)
