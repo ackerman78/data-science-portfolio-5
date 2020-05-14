@@ -18,29 +18,27 @@ This repository contains portfolio of data science and machine learning projects
   * CGPA: 3.2
   * Duration: Sep 2016 - Present
 
-#### Online Courses
+#### Online Courses and Certifications
 
 List of online courses I enrolled to in order to acquire knowledge and build my understanding on the subjects related to data science and machine learning.
 
-* Coursera Professional Certificate - [IBM Data Science Professional Certificate](https://www.coursera.org/professional-certificates/ibm-data-science)
+* Coursera Professional Certificate - [IBM Data Science](https://www.coursera.org/professional-certificates/ibm-data-science)
+* Coursera Professional Certificate - [IBM Applied AI](https://www.coursera.org/professional-certificates/applied-artifical-intelligence-ibm-watson-ai)
+* Coursera Specialization - [Introduction to Data Science](https://www.coursera.org/specializations/introduction-data-science)
+* Coursera Specialization - [Applied Data Science](https://www.coursera.org/specializations/applied-data-science)
 * Coursera Specialization - [Applied Data Science with Python Specialization](https://www.coursera.org/specializations/data-science-python)
 * Coursera Specialization - [Data Science Specialization](https://www.coursera.org/specializations/jhu-data-science)
+* Coursera Specialization - [Data Science: Foundations using R Specialization](https://www.coursera.org/specializations/data-science-foundations-r)
 * DataCamp Career Track - [Data Scientist with Python](https://www.datacamp.com/tracks/data-scientist-with-python)
-* Kaggle Micro Course - [Python](https://www.kaggle.com/learn/python)
-* Kaggle Micro Course - [Intro to Machine Learning](https://www.kaggle.com/learn/intro-to-machine-learning)
-* Kaggle Micro Course - [Intermediate Machine Learning](https://www.kaggle.com/learn/intermediate-machine-learning)
-* Kaggle Micro Course - [Data Visualization](https://www.kaggle.com/learn/data-visualization)
-* Kaggle Micro Course - [Pandas](https://www.kaggle.com/learn/pandas)
-* Kaggle Micro Course - [Feature Engineering](https://www.kaggle.com/learn/feature-engineering)
-
-#### Certificates
-
-* [What is Data Science?](https://www.coursera.org/account/accomplishments/records/NMHKKY69FLZ9?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course) (March 18, 2020) (Part of Coursera - IBM Data Science Professional Certificate)
-* [Open Source tools for Data Science](https://www.coursera.org/account/accomplishments/records/8LNERMHJMRRE?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course) (April 2, 2020) (Part of Coursera - IBM Data Science Professional Certificate)
-* [Data Science Methodology](https://www.coursera.org/account/accomplishments/records/J7NXJTEQTDTV?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course) (April 17, 2020) (Part of Coursera - IBM Data Science Professional Certificate)
-* [Python for Data Science and AI](https://www.coursera.org/account/accomplishments/records/NLBEULXMZCFY?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course) (May 2, 2020) (Part of Coursera - IBM Data Science Professional Certificate)
-* [Introduction to Data Science in Python](https://www.coursera.org/account/accomplishments/records/URMH7697YWPB?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course) (May 6, 2020) (Part of Coursera - Applied Data Science with Python Specialization)
-* [The Data Scientist’s Toolbox](https://www.coursera.org/account/accomplishments/records/T8SZSPB2BPDH?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course) (May 8, 2020) (Part of Coursera - Data Science Specialization)
+* Kaggle Micro Course - [Python](https://www.kaggle.com/learn/certification/jamaltariqcheema/python) (May, 2020)
+* Kaggle Micro Course - [Intro to Machine Learning](https://www.kaggle.com/learn/certification/jamaltariqcheema/intro-to-machine-learning) (March, 2020)
+* Kaggle Micro Course - [Intermediate Machine Learning](https://www.kaggle.com/learn/certification/jamaltariqcheema/intermediate-machine-learning) (April, 2020)
+* Kaggle Micro Course - [Data Visualization](https://www.kaggle.com/learn/certification/jamaltariqcheema/data-visualization) (April, 2020)
+* Kaggle Micro Course - [Pandas](https://www.kaggle.com/learn/certification/jamaltariqcheema/pandas) (April, 2020)
+* Cognitive Class - [Introduction to Data Science](https://courses.cognitiveclass.ai/certificates/166572bc6cee491caf3f5b58a987cc2d) (March, 2020)
+* Cognitive Class - [Data Science Hands-On with Open Source Tools](https://courses.cognitiveclass.ai/certificates/e806a31f814b4ad2af7b3a94056cb1aa) (March, 2020)
+* Cognitive Class - [Data Science Methodology](https://courses.cognitiveclass.ai/certificates/7a951a042fc340fe90b8572ae4bf2620) (March, 2020)
+* Cognitive Class - [Python 101 for Data Science](https://courses.cognitiveclass.ai/certificates/b16b998a041e4909ab2b8064ddac590d) (March, 2020)
 
 ## Contact
 
@@ -48,3 +46,4 @@ If you liked what you've seen and want to have a chat with me about the portfoli
 
 * Email: jamaltariqcheema@gmail.com
 * LinkedIn: [Muhammad Jamal Tariq](http://linkedin.com/in/jamaltariqcheema/)
+* Kaggle: [Muhammad Jamal Tariq](https://www.kaggle.com/jamaltariqcheema)
