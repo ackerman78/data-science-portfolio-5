@@ -1,5 +1,5 @@
-<p align="center"> 
-<img src="https://assets.datacamp.com/production/project_684/img/project_image.png" width="400">
+<p align="center">
+<img src="https://i.ibb.co/gWVbMds/TV-Halftime-Shows-and-the-Big-Game.png" alt="TV-Halftime-Shows-and-the-Big-Game" border="0" width="200">
 </p>
 
 # TV, Halftime Shows, and the Big Game
@@ -16,7 +16,7 @@ This project answer the following questions:
 * How have viewership, TV ratings, and ad cost evolved over time?
 * Who are the most prolific musicians in terms of halftime show performances?
 
-The dataset used in this project was scraped and polished from Wikipedia. It is made up of three CSV files, one with game data, one with TV data, and one with halftime musician data for all 52 Super Bowls through 2018.
+The dataset used in this project was scraped and polished from Wikipedia. It is made up of three CSV files, one with [game data](https://github.com/jamaltariqcheema/data-science-portfolio/blob/master/DataCamp/TV%2C%20Halftime%20Shows%2C%20and%20the%20Big%20Game/Datasets/super_bowls.csv), one with [TV data](https://github.com/jamaltariqcheema/data-science-portfolio/blob/master/DataCamp/TV%2C%20Halftime%20Shows%2C%20and%20the%20Big%20Game/Datasets/tv.csv), and one with [halftime musician](https://github.com/jamaltariqcheema/data-science-portfolio/blob/master/DataCamp/TV%2C%20Halftime%20Shows%2C%20and%20the%20Big%20Game/Datasets/halftime_musicians.csv) data for all 52 Super Bowls through 2018.
 
 ## Project Tasks
 
