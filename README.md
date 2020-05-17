@@ -10,6 +10,8 @@ This repository contains portfolio of data science and machine learning projects
 
 2. [CARDISYS - Heart Disease Prediction System](https://github.com/jamaltariqcheema/data-science-portfolio/tree/master/CARDISYS%20-%20Heart%20Disease%20Prediction%20System) - An online web service that will predict your chance of having heart attack using machine learning. The front-end is developed using HTML, CSS, JavaScript, jQuery and Bootstrap, and back-end is developed using PHP, Python and MySQL(database).
 
+3. [DataCamp Projects](https://github.com/jamaltariqcheema/data-science-portfolio/tree/master/DataCamp) - Data Science and Machine Learning projects that I either completed separatedly or as a part of DataCamp career track.
+
 ### Education
 
 #### Formal Education
@@ -47,3 +49,4 @@ If you liked what you've seen and want to have a chat with me about the portfoli
 * Email: jamaltariqcheema@gmail.com
 * LinkedIn: [Muhammad Jamal Tariq](http://linkedin.com/in/jamaltariqcheema/)
 * Kaggle: [Muhammad Jamal Tariq](https://www.kaggle.com/jamaltariqcheema)
+* DataCamp: [Muhammad Jamal Tariq](https://www.datacamp.com/profile/03134162040)
