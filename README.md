@@ -49,4 +49,3 @@ If you liked what you've seen and want to have a chat with me about the portfoli
 * Email: jamaltariqcheema@gmail.com
 * LinkedIn: [Muhammad Jamal Tariq](http://linkedin.com/in/jamaltariqcheema/)
 * Kaggle: [Muhammad Jamal Tariq](https://www.kaggle.com/jamaltariqcheema)
-* DataCamp: [Muhammad Jamal Tariq](https://www.datacamp.com/profile/03134162040)
